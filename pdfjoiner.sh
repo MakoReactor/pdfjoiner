@@ -2,8 +2,8 @@
 # Original program
 # gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=TrabalhoFinal.pdf *.pdf
 #
-# juntapdf - version_1.2
-#
+# pdfjoiner - version_1.2
+# date: 01/29/2014
 #
 #
 # Douglas Barbosa dos Santos
