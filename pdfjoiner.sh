@@ -1,9 +1,9 @@
-#!/bin/bash
+	#!/bin/bash
 # Original program
 # gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=TrabalhoFinal.pdf *.pdf
 #
-# pdfjoiner - version_1.2
-# date: 01/29/2014
+# juntapdf
+#
 #
 #
 # Douglas Barbosa dos Santos
@@ -17,25 +17,28 @@
 # Todo: 
 # Use the program inside a for statment
 #
-#
+# Version-1.2
+# Version-1.3 - Added a option to take the version from the head in regex
+#		Use a "basename" to pick up the name
+#		Fix bug that was not list pdf files
 #
 
 
 
 # function that show the version of script
 version(){ 
-	head -5 ~/bin/my_progrs/junta_pdf.sh | tail -1 | cut -d "-" -f 2 | cut -d " " -f 2
+	#head -5 ~/bin/my_progrs/junta_pdf.sh | tail -1 | cut -d "-" -f 2 | cut -d " " -f 2
+	egrep "^# Version-" ~/bin/my_progrs/junta_pdf.sh | tail -1 | cut -d ' ' -f 2
 	
 }
 
 help(){
-	echo ""
-	echo "*** pdfjoiner - join yours pdf or reduce it ***"
-	echo "	USE MODE"
-	echo "	-h - show this help"
-	echo "	-i file.pdf - make a new file.pdf with prefix name 'new-'"
-	echo "	-l - list all pdf files on current folder"
-	echo "	without options - join all of pdf files of the diretory in alphabethic order"
+	echo " 	$(basename $0) join yours pdf or reduce it"
+	echo "	Usage: $(basename $0) [OPTIONS]"
+	echo "	-h              show this help"
+	echo "	-i file.pdf     make a new file.pdf with prefix name 'new-'"
+	echo "	-l              list all pdf files on current folder"
+	echo "	without options join all of pdf files of the diretory in alphanumeric order"
 	echo ""
 	
 }
@@ -49,7 +52,7 @@ if [ -n "$1" ]; then
 
 		"-v") version ;;
 
-		"-l") ls *.pdf ;;
+		"-l") ls | grep -i .pdf$ ;;
 
 		*) help ;;
 	esac
