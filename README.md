@@ -1,4 +1,4 @@
 pdfjoiner
 =========
 
-Shell Scritp to join your pdf files
+Shell Script to join your pdf files
